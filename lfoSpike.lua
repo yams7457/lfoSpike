@@ -8,6 +8,8 @@ pentad = {0, 2, 4, 7, 9, 12,
          14, 16, 19, 21, 24, 26, 
          28, 31, 33, 36, 38, 40}
 
+
+function addParams()
   params:add{
     type = "control",
     id = "melCycle",
@@ -191,8 +193,10 @@ params:add_number(
         1, -- default
         false -- wrap
         )
+end
 
 function init()
+    addParams()
     createLFOs()
     params:set_action("melRange", function() melLfo:set('max', math.floor(math.min(18, params:get('melRange') + params:get('melMin')))) end)
     params:set_action("melMin", function() melLfo:set('max', math.floor(math.min(18, params:get('melRange') + params:get('melMin')))) melLfo:set('min', params:get('melMin')) end)
